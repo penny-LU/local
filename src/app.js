@@ -9,6 +9,7 @@ const net = require('net')
 
 const port = 8124
 const host = '127.0.0.1'
+
 // const path = require('path')
 // const API_SERVICE_URL = 'https://backend20221130.azurewebsites.net'
 const socketList = []
@@ -127,8 +128,7 @@ app.post('/custom', async (req, res) => {
 // })
 
 require('./routes')(app)
-
-const PORT = process.env.PORT || 8081
+const PORT = process.env.NODE_ENV === 'production' ? (process.env.PORT || 80) : 8081;
 // { force: true }
 sequelize.sync()
   .then(() => {
